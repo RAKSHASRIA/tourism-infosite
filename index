@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tourism Website with Marquee and World Clocks</title>
+  <style>
+    /* CSS styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+    
+    #marquee {
+      white-space: nowrap;
+      overflow: hidden;
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+    }
+    
+    #marquee span {
+      display: inline-block;
+      padding-left: 100%;
+      animation: marquee 15s linear infinite;
+    }
+    
+    @keyframes marquee {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+    
+    #clocks {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .clock {
+      width: 200px;
+      margin: 10px;
+      padding: 10px;
+      background-color: #333;
+      color: #fff;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+      text-align: center;
+    }
+    
+    .clock h2 {
+      margin: 0;
+      font-size: 16px;
+      padding-bottom: 10px;
+    }
+    
+    .clock p {
+      font-size: 14px;
+      margin: 0;
+    }
+    
+    /* Other styles specific to the tourism website */
+    .destination {
+      margin-bottom: 20px;
+      padding: 20px;
+      background-color: #f5f5f5;
+      border-radius: 4px;
+    }
+    
+    .destination h3 {
+      margin-top: 0;
+    }
+    
+    .destination img {
+      max-width: 100%;
+      margin-bottom: 10px;
+    }
+    
+  </style>
+</head>
+<body>
+  <h1>Welcome to our Tourism Website!</h1>
+  
+  <div id="marquee">
+    <span>Explore the world with our amazing travel destinations!</span>
+  </div>
+  
+  <div id="clocks"></div>
+  
+  <div class="destination">
+    <h3>Destination: Paris</h3>
+    <img <a href="https://ibb.co/8zJqZmn"><img src="https://i.ibb.co/KNYdv5c/paris.jpg" alt="paris" border="0"></a>
+    <p>Discover the charm and romance of Paris, the City of Lights. Visit iconic landmarks like the Eiffel Tower, Louvre Museum, and Notre-Dame Cathedral.</p>
+  </div>
+  
+  <div class="destination">
+    <h3>Destination: Tokyo</h3>
+    <img <a href="https://ibb.co/TKQrb4y"><img src="https://i.ibb.co/B4hwryk/tokyoo.jpg" alt="tokyoo" border="0"></a>
+    <p>Experience the vibrant culture and modern wonders of Tokyo, the capital city of Japan. Explore historical sites, enjoy delicious cuisine, and immerse yourself in bustling city life.</p>
+  </div>
+  
+  <!-- Add more destination sections as needed -->
+  
+  <script>
+    // JavaScript code
+    var marqueeElement = document.getElementById('marquee');
+    
+    marqueeElement.addEventListener('mouseover', function() {
+      this.stop();
+    });
+    
+    marqueeElement.addEventListener('mouseout', function() {
+      this.start();
+    });
+    
+    var clocksContainer = document.getElementById('clocks');
+    
+    function createClock(timezone, label, color) {
+      var clockElement = document.createElement('div');
+      clockElement.classList.add('clock');
+      clockElement.style.backgroundColor = color;
+      
+      var labelElement = document.createElement('h2');
+      labelElement.textContent = label;
+      
+      var timeElement = document.createElement('p');
+      
+      clockElement.appendChild(labelElement);
+      clockElement.appendChild(timeElement);
+      clocksContainer.appendChild(clockElement);
+      
+      function updateClock() {
+        var currentTime = new Date();
+        var options = { timeZone: timezone, timeStyle: 'medium' };
+        var formattedTime = currentTime.toLocaleTimeString(undefined, options);
+        
+        timeElement.textContent = formattedTime;
+      }
+      
+      setInterval(updateClock, 1000);
+    }
+    
+    createClock('Europe/Paris', 'Paris', '#ff5722');
+    createClock('Asia/Tokyo', 'Tokyo', '#009688');
+    // Add more clocks for other destinations
+    
+  </script>
+</body>
+</html>
